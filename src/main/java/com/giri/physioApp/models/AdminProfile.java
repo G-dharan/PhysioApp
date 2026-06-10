@@ -15,6 +15,5 @@ public class AdminProfile extends BaseModel
 {
 	
 	@OneToOne
-	@JoinColumn(name ="id")
 	private User user;
 }

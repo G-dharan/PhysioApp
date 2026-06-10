@@ -9,15 +9,15 @@ import com.giri.physioApp.dtos.AddExerciseRequestDto;
 import com.giri.physioApp.dtos.AddExerciseResponseDto;
 import com.giri.physioApp.exceptions.ExerciseNotFoundException;
 import com.giri.physioApp.models.Exercise;
-import com.giri.physioApp.repositories.ExerciseRepo;
+import com.giri.physioApp.repositories.ExerciseRepository;
 
 @Service
 @Primary
 public class ExerciseServiceImplementation implements ExerciseService{
 	
-	private ExerciseRepo exerciseRepo;
+	private ExerciseRepository exerciseRepo;
 	
-	public ExerciseServiceImplementation(ExerciseRepo exerciseRepo) {
+	public ExerciseServiceImplementation(ExerciseRepository exerciseRepo) {
 		this.exerciseRepo = exerciseRepo;
 	}
 

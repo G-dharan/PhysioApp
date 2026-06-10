@@ -13,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -30,7 +31,9 @@ public class BaseModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private boolean isDeleted;
+	//boolean primitive data type would be ignored during object creation
+	@Builder.Default
+	private Boolean isDeleted = false;
 	
 	@CreatedDate
 	private Date createdAt;

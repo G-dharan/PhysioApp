@@ -8,6 +8,6 @@ import lombok.NonNull;
 
 public interface PatientExerciseRepo extends JpaRepository<PatientExercise, Long>{
 
-	PatientExercise findByPatientIdAndExerciseId(@NonNull Long exerciseId, @NonNull Long patientId);
+	PatientExercise findByPatientProfileIdAndExerciseId(@NonNull Long exerciseId, @NonNull Long patientProfileId);
 
 }

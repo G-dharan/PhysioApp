@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.giri.physioApp.models.Exercise;
 
-public interface ExerciseRepo extends JpaRepository<Exercise, Long>{
+public interface ExerciseRepository extends JpaRepository<Exercise, Long>{
 
 	Exercise save(Exercise exercise);
 

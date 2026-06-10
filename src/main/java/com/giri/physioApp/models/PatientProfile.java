@@ -18,14 +18,14 @@ import lombok.experimental.SuperBuilder;
 public class PatientProfile extends BaseModel{
 	
 	@OneToOne
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "user_id",  referencedColumnName = "id")
 	private User user;
 	//version controlled
 	private String summary;
 	private String diagnosis;
 	private String reports;
 	private Date dateOfBirth;
-	@OneToMany
+	@OneToMany(mappedBy = "patientProfile")
 	private List<PatientExercise> patientExercises;
 
 }

@@ -17,12 +17,6 @@ public class User extends BaseModel {
 	private long phone;
 	private String Address;
 	private Role role;
-	
-	@OneToOne(mappedBy="user")
-	private PatientProfile patientProfile;
-	
-	@OneToOne(mappedBy = "user")
-	private AdminProfile adminProfile;
 
 
 }

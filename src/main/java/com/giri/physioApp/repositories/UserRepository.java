@@ -13,5 +13,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	@Query("select p from PatientProfile p where p.user.id = :userId")
 	Optional<PatientProfile> findByPatienProfileId(Long userId);
 	
+	Optional<User> findByNameAndPhone(String name, long phone);
+	
 
 }

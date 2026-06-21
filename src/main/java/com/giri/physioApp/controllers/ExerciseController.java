@@ -22,11 +22,9 @@ import com.giri.physioApp.services.ExerciseService;
 public class ExerciseController {
 	
 	private ExerciseService exerciseService;
-	private ExerciseAssignmentService exerciseAssignmentService;
 
 	public ExerciseController(ExerciseService exerciseService, ExerciseAssignmentService exerciseAssignmentService) {
 		this.exerciseService = exerciseService;
-		this.exerciseAssignmentService = exerciseAssignmentService;
 	}
 
 	@PostMapping
@@ -42,10 +40,6 @@ public class ExerciseController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(addExerciseResponseDto);
 	}
 
-	@PostMapping("/assignExercise")
-	public PatientExerciseAssignmentResponseDto patientExerciseAssignment(@RequestBody PatientExerciseAssignmentRequestDto assignmentRequestDto) {
-		PatientExerciseAssignmentResponseDto patientExerciseAssignmentResponseDto = exerciseAssignmentService.addExerciseToPatient(assignmentRequestDto);
-		return patientExerciseAssignmentResponseDto;
-	}
+
 
 }

@@ -14,14 +14,14 @@ import com.giri.physioApp.dtos.AddExerciseRequestDto;
 import com.giri.physioApp.dtos.AddExerciseResponseDto;
 import com.giri.physioApp.models.Exercise;
 import com.giri.physioApp.models.MediaType;
-import com.giri.physioApp.repositories.ExerciseRepo;
+import com.giri.physioApp.repositories.ExerciseRepository;
 
 @ExtendWith(MockitoExtension.class)
 public class ExerciseServiceTest {
 
 	
 	@Mock
-	ExerciseRepo repo;
+	ExerciseRepository repo;
 	
 	ExerciseServiceImplementation exerciseService;
 	
@@ -47,6 +47,12 @@ public class ExerciseServiceTest {
 		
 		
 	}
+	
+//	duplicateEntry() 
+	
+	
+	
+	
 	
 	
 	

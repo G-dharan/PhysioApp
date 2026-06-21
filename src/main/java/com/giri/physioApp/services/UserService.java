@@ -1,10 +1,12 @@
 package com.giri.physioApp.services;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
-import com.giri.physioApp.dtos.CreatePatientRequestDto;
 import com.giri.physioApp.dtos.CreateUserRequestDto;
 import com.giri.physioApp.dtos.CreateUserResponseDto;
+import com.giri.physioApp.models.Role;
 import com.giri.physioApp.models.User;
 import com.giri.physioApp.repositories.UserRepository;
 
@@ -19,17 +21,23 @@ public class UserService implements IUserService {
 
 	public CreateUserResponseDto createUser(CreateUserRequestDto createUserRequestDto) {
 		User inputUser = createUserRequestDto.toUser();
-		User createdUser = userRepo.save(inputUser);
-		return CreateUserResponseDto.from(createdUser);
+		userRepo.findByNameAndPhone(createUserRequestDto.getName(), createUserRequestDto.getPhone()).ifPresent(user -> {
+			throw new RuntimeException("User with name " + user.getName() + " and phone " + user.getPhone() + " already exists");
+		});
+		User dbUser = userRepo.save(inputUser);
+		return CreateUserResponseDto.from(dbUser);
+	}
+	
+	public User createUserEntity(String name, long phone, String Address) {
+		User inputUser = CreateUserRequestDto.toUser(name, phone, Address);
+		return userRepo.save(inputUser);
+	}
+
+	public Optional<User> findUserByNameAndPhone(String name, long phone) {
+		// TODO Auto-generated method stub
+		return userRepo.findByNameAndPhone(name, phone);
 	}
 	
 
-	@Override
-	public CreateUserResponseDto createPatient(CreatePatientRequestDto createPatientRequestDto) {
-		// TODO Auto-generated method stub
-		User inputUser = createPatientRequestDto.toUser();
-		createPatientRequestDto.toPatientProfile(inputUser);
-		User createdUser = userRepo.save(inputUser);
-		return CreateUserResponseDto.from(createdUser);
-	}
+
 }

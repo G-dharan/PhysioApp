@@ -1,0 +1,1 @@
+alter table user add UNIQUE KEY `uq_user_entity` (name, phone);

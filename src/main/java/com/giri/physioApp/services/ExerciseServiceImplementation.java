@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.giri.physioApp.dtos.AddExerciseRequestDto;
 import com.giri.physioApp.dtos.AddExerciseResponseDto;
 import com.giri.physioApp.exceptions.ExerciseNotFoundException;
+import com.giri.physioApp.exceptions.ResourceAlreadyExistsException;
 import com.giri.physioApp.models.Exercise;
 import com.giri.physioApp.repositories.ExerciseRepository;
 
@@ -23,6 +24,10 @@ public class ExerciseServiceImplementation implements ExerciseService{
 
 	public AddExerciseResponseDto addExercise(AddExerciseRequestDto addExerciseRequestDto) {
 		Exercise exercise = addExerciseRequestDto.toExercise();
+		Optional<Exercise> optionalExercise = exerciseRepo.getByName(exercise.getName());
+		if(optionalExercise.isPresent()) {
+			throw new ResourceAlreadyExistsException("Exercise " + exercise.getName() + " already exists");
+		}
 		Exercise savedExercise = exerciseRepo.save(exercise);
 		AddExerciseResponseDto addExerciseResponseDto = AddExerciseResponseDto.fromExercise(savedExercise);
 		return addExerciseResponseDto;

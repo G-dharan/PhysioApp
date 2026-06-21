@@ -5,12 +5,14 @@ import com.giri.physioApp.models.PatientExercise;
 import com.giri.physioApp.models.PatientExerciseStatus;
 import com.giri.physioApp.models.PatientProfile;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
 
 @Data
 @Builder
+@AllArgsConstructor
 public class PatientExerciseAssignmentRequestDto {
 	@NonNull
 	long patientId;
@@ -30,3 +32,4 @@ public class PatientExerciseAssignmentRequestDto {
 	
 
 }
+

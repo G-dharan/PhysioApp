@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.giri.physioApp.dtos.CreatePatientRequestDto;
-import com.giri.physioApp.dtos.CreatePatientResponseDto;
 import com.giri.physioApp.dtos.CreateUserRequestDto;
 import com.giri.physioApp.dtos.CreateUserResponseDto;
+import com.giri.physioApp.services.IPatientService;
 import com.giri.physioApp.services.IUserService;
 
 @RestController
@@ -16,9 +16,11 @@ import com.giri.physioApp.services.IUserService;
 public class UserController {
 	
 	private IUserService userService;
+	private IPatientService patientService;
 	
-	public UserController(IUserService userService) {
+	public UserController(IUserService userService, IPatientService patientService) {
 		this.userService = userService;
+		this.patientService = patientService;
 	}
 
 	@PostMapping("/createUser")
@@ -30,7 +32,7 @@ public class UserController {
 	
 	@PostMapping("/createPatient")
 	public CreateUserResponseDto createPatient(@RequestBody CreatePatientRequestDto createPatientRequestDto) {
-		CreateUserResponseDto createUserResponseDto = userService.createPatient(createPatientRequestDto);
+		CreateUserResponseDto createUserResponseDto = patientService.createPatient(createPatientRequestDto);
 		return createUserResponseDto;
 		
 	}
